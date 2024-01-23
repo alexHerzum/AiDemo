@@ -1,0 +1,81 @@
+#aui {
+    .animation(@animation) {
+        -webkit-animation: @animation;
+        animation: @animation;
+    }
+
+    .border-radius(@radius) {
+        border-radius: @radius;
+    }
+
+    .box-sizing(@sizing: border-box) {
+        -moz-box-sizing: @sizing;
+        box-sizing: @sizing;
+    }
+
+    .gradient {
+        .vertical(@start-color: #fff, @end-color: #f2f2f2, @start-percent: 0%, @end-percent: 100%) {
+            background: @end-color;
+            background: linear-gradient(to bottom, @start-color @start-percent, @end-color @end-percent);
+        }
+    }
+
+    .rotate(@angle) {
+        -webkit-transform: rotate(@angle);
+        -ms-transform: rotate(@angle);
+        transform: rotate(@angle);
+    }
+
+    .shadow {
+        .inner(@inner: 0 1px 0 0 rgba(255, 255, 255, 0.1) inset) {
+            box-shadow: @inner;
+        }
+
+        .outer(@outer: 0 1px 1px 0 rgba(0, 0, 0, 0.2)) {
+            box-shadow: @outer;
+        }
+
+        .inner-and-outer(@inner: 0 1px 0 0 rgba(255, 255, 255, 0.1) inset, @outer: 0 1px 1px 0 rgba(0, 0, 0, 0.2)) {
+            box-shadow: @inner, @outer;
+        }
+    }
+
+    .text-truncate() {
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+    }
+
+    .transition(@transition) {
+        -webkit-transition: @transition;
+        transition: @transition;
+    }
+
+    .transition {
+        .fadeIn(@length: 0.2s, @max-opacity: 1) {
+            opacity: @max-opacity;
+            transition: visibility @length, opacity @length;
+            visibility: visible;
+        }
+
+        .fadeOut(@length: 0.2s) {
+            opacity: 0;
+            transition: visibility @length, opacity @length;
+            visibility: hidden;
+        }
+    }
+
+    .transition-delay(@delay) {
+        transition-delay: @delay;
+    }
+
+    .transform-rotate(@angle) {
+        -ms-transform: rotate(@angle);
+        -webkit-transform: rotate(@angle);
+        transform: rotate(@angle);
+    }
+
+    .height-calc(@calc) {
+        height: ~"calc(@{calc})";
+    }
+}

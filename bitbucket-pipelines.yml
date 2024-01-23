@@ -1,0 +1,27 @@
+#  Template NodeJS build
+
+#  This template allows you to validate your NodeJS code.
+#  The workflow allows running tests and code linting on the default branch.
+
+image: node:10.15.3
+
+pipelines:
+  default:
+    - parallel:
+        - step:
+            name: Build and Test
+            caches:
+              - node
+            script:
+              - npm -v
+        - step:
+            name: Deploy to test
+            deployment: test
+            # trigger: manual  # Uncomment to make this a manual deployment.
+            script:
+              - echo "Deploying to test environment"
+
+              - pipe: atlassian/opsgenie-send-alert:0.5.3
+                variables:
+                  GENIE_KEY: '35f6237f-9c3b-477a-a2a0-0cf92e77e3cd'
+                  MESSAGE: 'Demo Build'

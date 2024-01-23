@@ -1,0 +1,9 @@
+p {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+#shouldBeClipped {
+    width: 50px;
+}

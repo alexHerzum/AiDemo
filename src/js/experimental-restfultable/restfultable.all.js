@@ -1,0 +1,2 @@
+// This file only exists to work around circular dependencies between restful table and its children.
+// Restful table requires the child objects to exist and the child objects need the result table namespace to exist.

@@ -1,0 +1,3 @@
+Eve - JavaScript Events Library
+Copyright (c) 2011 Dmitry Baranovskiy (http://dmitry.baranovskiy.com/)
+Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) license.

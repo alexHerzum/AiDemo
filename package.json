@@ -1,0 +1,56 @@
+{
+  "name": "aui",
+  "description": "Atlassian User Interface Framework",
+  "version": "5.6.905-SNAPSHOT",
+  "private": true,
+  "dependencies": {},
+  "devDependencies": {
+    "async": "0.2.9",
+    "bower": "1.3.6",
+    "tmp": "0.0.23",
+    "fs-extra": "0.8.1",
+    "grunt": "0.4.2",
+    "grunt-available-tasks": "0.4.2",
+    "grunt-cli": "0.1.11",
+    "grunt-contrib-clean": "0.5.0",
+    "grunt-contrib-concat": "0.3.0",
+    "grunt-contrib-copy": "0.4.1",
+    "grunt-contrib-cssmin": "0.7.0",
+    "grunt-contrib-jshint": "~0.9.0",
+    "grunt-contrib-less": "0.8.3",
+    "grunt-contrib-requirejs": "0.4.1",
+    "grunt-contrib-uglify": "0.2.7",
+    "grunt-contrib-watch": "0.5.3",
+    "grunt-jscs": "^0.6.1",
+    "grunt-karma": "0.6.2",
+    "grunt-plato": "^1.0.0",
+    "grunt-requirejs": "0.4.0",
+    "grunt-shell": "~0.6.4",
+    "grunt-text-replace": "0.3.10",
+    "jscs": "~1.3.0",
+    "karma": "~0.10.0",
+    "karma-coverage": "~0.2.4",
+    "karma-junit-reporter": "0.2.1",
+    "karma-less-preprocessor": "0.2.0",
+    "karma-mocha": "0.1.1",
+    "karma-qunit": "0.1.1",
+    "karma-requirejs": "0.2.1",
+    "karma-sinon": "1.0.0",
+    "karma-sinon-chai": "~0.1.4",
+    "mocha": "~1.17.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://bitbucket.org/atlassian/aui.git"
+  },
+  "scripts": {
+    "postinstall": "node ./build/bin/npm-postinstall.js",
+    "test": "node ./build/bin/npm-test.js"
+  },
+  "licenses": [
+    {
+      "type": "Apache",
+      "url": "https://bitbucket.org/atlassian/aui/src/master/licenses/LICENSE-aui.txt"
+    }
+  ]
+}

@@ -1,0 +1,437 @@
+@import 'imports/global';
+
+/**
+ * Dropdown 2
+ */
+
+/* Functional styles - these are always applied
+---------------------------------------------------------------------- */
+.aui-dropdown2 {
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    display: none;
+    max-width: 300px;
+    min-width: 160px;
+    position: absolute;
+
+    // TODO: Remove this when dropdown2 is managed by Layer Manager
+    z-index: 1;
+}
+.aui-dropdown2 a {
+    display: block;
+}
+.aui-dropdown2 .aui-list-truncate a {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* Default style for Dropdown2, invoked with aui-style-default
+---------------------------------------------------------------------- */
+.aui-dropdown2.aui-style-default {
+    background-color: @aui-dropdown2-bg-color;
+    border: 1px solid @aui-dropdown2-border-color;
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+}
+.aui-dropdown2.aui-style-default ul {
+    list-style: none;
+    margin: 2px 0;
+    padding-left: 0;
+}
+.aui-style-default .aui-dropdown2-section + .aui-dropdown2-section {
+    border-top: 1px solid @aui-dropdown2-border-color;
+}
+.aui-dropdown2.aui-style-default > strong,
+.aui-dropdown2.aui-style-default .aui-dropdown2-section > strong,
+.aui-dropdown2-heading {
+    color: #707070;
+    display: block;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 7px 10px 5px;
+    text-transform: uppercase;
+}
+.aui-dropdown2.aui-style-default strong + ul {
+    margin-top: 0;
+}
+.aui-dropdown2.aui-style-default a {
+    color: @aui-text-color;
+    padding: 3px 10px;
+    text-decoration: none;
+}
+.aui-dropdown2.aui-style-default a:focus,
+.aui-dropdown2.aui-style-default a:hover {
+    text-decoration: none;
+}
+.aui-dropdown2.aui-style-default .active,
+.aui-dropdown2.aui-style-default .aui-dropdown2-active {
+    background-color: @aui-link-inverted-bg-color;
+    color: @aui-link-inverted-text-color;
+}
+.aui-dropdown2.aui-style-default .disabled,
+.aui-dropdown2.aui-style-default .aui-dropdown2-disabled{
+    color: @aui-dropdown2-disabled-text-color; /* equivalent of opacity: 0.5 */
+    cursor: default;
+}
+.aui-dropdown2.aui-style-default .aui-icon-container,
+.aui-dropdown2.aui-style-default .aui-dropdown2-radio,
+.aui-dropdown2.aui-style-default .aui-dropdown2-checkbox {
+    padding-left: 31px;
+}
+
+.aui-dropdown2.aui-style-default .aui-icon-container,
+.aui-dropdown2.aui-style-default .aui-dropdown2-radio,
+.aui-dropdown2.aui-style-default .aui-dropdown2-checkbox {
+    /* position of the background or icon (both 16x16) is:
+     * - 10px from the left to match the item padding
+     * - 7px from the top which is calculated:
+     *   - 5px for the top padding of the item
+     *   - 2px is half the difference between the line-height (20) and the icon height (16) so it's vertically spaced
+     */
+    background-position: 10px 5px;
+    background-repeat: no-repeat;
+    position: relative;
+}
+
+.aui-dropdown2.aui-style-default .aui-icon-container > img,
+.aui-dropdown2.aui-style-default .aui-icon-container > .aui-icon {
+    border-width: 0;
+    left: 10px;
+    position: absolute;
+    top: 5px;
+}
+.aui-dropdown2.aui-style-default .aui-icon-container > .aui-icon {
+    display: block;
+    overflow: hidden;
+    text-indent: -99999px;
+}
+
+
+/* Checkbox items */
+.aui-dropdown2.aui-style-default .aui-dropdown2-checkbox.checked,
+.aui-dropdown2.aui-style-default .aui-dropdown2-checkbox.aui-dropdown2-checked{
+    /* black tick */
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAZElEQVQ4y2P4//8/AyWYYdQA0gwAAisgjifLAKjmT0D8A4hlcBoABMxArIVD8y8gDsTrAiBYCMSfgdiakGZcBgRAFYMMScenGWcYQA35BsRf8WnGG4hAEAs1IJDsaAQCsRGQlAFzIahrvTZlPQAAAABJRU5ErkJggg==);
+}
+.aui-dropdown2.aui-style-default .aui-dropdown2-checkbox.checked.active,
+.aui-dropdown2.aui-style-default .aui-dropdown2-checkbox.aui-dropdown2-checked.aui-dropdown2-active{
+    /* white tick */
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAXUlEQVQ4y2P4//8/AyWYYdQAkg2wAuJ4cg0Aaf4ExD+AWAafAcxArIVD8y8gDiTkgoVA/BmIrQlpxmVAAFQxyJB0fJrxhQHIkG9A/BWfZkKBGAs1IJCSaBQbAUkZADrWERF5/1uYAAAAAElFTkSuQmCC);
+}
+.aui-dropdown2.aui-style-default .aui-dropdown2-checkbox.checked.disabled,
+.aui-dropdown2.aui-style-default .aui-dropdown2-checkbox.aui-dropdown2-checked.aui-dropdown2-disabled,
+.aui-dropdown2.aui-style-default .aui-dropdown2-checkbox.checked.disabled.active,
+.aui-dropdown2.aui-style-default .aui-dropdown2-checkbox.aui-dropdown2-checked.aui-dropdown2-disabled.aui-dropdown2-active {
+    /* grey tick */
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAeElEQVQ4y2P4//8/AyWYYdQA0gw4deqU1ZkzZ+LJMgCk+fTp05+A+MeJEydkcBqwatUqZqACLRyaf508eTIQrwuAihYC8WcgtiakGasBQD8GgBRDDUnHpxlnGEAN+QbEX/FpxhuIQI2xIAPwaSYYCxcvXhQbAUkZACU4+yryyeQvAAAAAElFTkSuQmCC);
+}
+
+/* Radio items */
+.aui-dropdown2.aui-style-default .aui-dropdown2-radio.checked,
+.aui-dropdown2.aui-style-default .aui-dropdown2-radio.aui-dropdown2-checked{
+    /* checked */
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAPklEQVQ4y2P4//8/AyWYYdQA7AYAAZuamlo7ED+H4naQGNEGQDX/R8PtpBjwHIsBz+lqAGVeoDgQR1MiaRgAnxW7Q0QEK0cAAAAASUVORK5CYII=);
+}
+.aui-dropdown2.aui-style-default .aui-dropdown2-radio.checked.active,
+.aui-dropdown2.aui-style-default .aui-dropdown2-radio.aui-dropdown2-checked.aui-dropdown2-active {
+    /* checked hover/focus */
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAOklEQVQ4y2P4//8/AyWYYdQAnAawAXE7ED+H4naoGNEGgDSgg3ZSDHiOxYDndDWAYi9QHIijKZEEDABrgRimRc6sKAAAAABJRU5ErkJggg==);
+}
+.aui-dropdown2.aui-style-default .aui-dropdown2-radio.checked.disabled,
+.aui-dropdown2.aui-style-default .aui-dropdown2-radio.aui-dropdown2-checked.aui-dropdown2-disabled,
+.aui-dropdown2.aui-style-default .aui-dropdown2-radio.checked.disabled.active,
+.aui-dropdown2.aui-style-default .aui-dropdown2-radio.aui-dropdown2-checked.aui-dropdown2-disabled.aui-dropdown2-active {
+    /* checked disabled and checked disabled hover/focus */
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAARklEQVQ4y2P4//8/AyWYYdQA7AasWrWK7eDBg+0HDhx4DsIgNkiMaANAGoD4PxpuJ9oAqK0oBoDE6GcAxV6gOBBHUyJpGADX7/1D0vUTdAAAAABJRU5ErkJggg==);
+}
+
+.aui-dropdown2.aui-dropdown2-tailed {
+    border: 1px solid @aui-dropdown2-border-color;
+    margin-top: 10px;
+}
+
+.aui-dropdown2.aui-dropdown2-tailed:before,
+.aui-dropdown2.aui-dropdown2-tailed:after {
+    border-color: transparent;
+    border-style: outset outset solid outset;
+    border-width: 8px;
+    bottom: 100%;
+    content: "";
+    display: block;
+    height: 0;
+    position: absolute;
+    width: 0;
+}
+.aui-dropdown2.aui-dropdown2-tailed:before {
+    border-bottom-color: @aui-dropdown2-border-color;
+    margin-bottom: 1px;
+}
+.aui-dropdown2.aui-dropdown2-tailed:after {
+    border-bottom-color: @aui-dropdown2-bg-color;
+}
+
+/* basic in-page dropdown trigger style DEPRECATED as of 4.2 */
+.aui-dropdown2-trigger.aui-style-dropdown2triggerlegacy1 {
+    padding: 5px 8px;
+    text-decoration: none;
+}
+.aui-dropdown2-trigger.aui-style-dropdown2triggerlegacy1:hover,
+.aui-dropdown2-trigger.aui-style-dropdown2triggerlegacy1:focus,
+.aui-dropdown2-trigger.aui-style-dropdown2triggerlegacy1.active,
+.aui-dropdown2-trigger.aui-style-dropdown2triggerlegacy1.aui-dropdown2-active{
+    background-color: #326ca6;
+    border-radius: 4px;
+    color: @aui-dropdown2-trigger-active-color;
+    text-decoration: none;
+}
+.aui-dropdown2-trigger.aui-style-dropdown2triggerlegacy1.active,
+.aui-dropdown2-trigger.aui-style-dropdown2triggerlegacy1.aui-dropdown2active{
+    border-radius: 4px 4px 0 0;
+}
+
+.aui-dropdown2-trigger.aui-style-dropdown2triggerlegacy1[aria-disabled="true"],
+.aui-dropdown2-trigger.aui-style-dropdown2triggerlegacy1[aria-disabled="true"]:hover,
+.aui-dropdown2-trigger.aui-style-dropdown2triggerlegacy1[aria-disabled="true"]:focus,
+.aui-dropdown2-trigger.aui-style-dropdown2triggerlegacy1[aria-disabled="true"]:active {
+    background: inherit;
+    color: #99b6d3; /* equivalent of opacity: 0.5 */
+    cursor: default;
+}
+
+/* Toolbar/Toolbar2-via-buttons integration. Avoid double border: */
+.aui-dropdown2.aui-style-default.aui-dropdown2-in-toolbar,
+.aui-dropdown2.aui-style-default.aui-dropdown2-in-buttons {
+    margin-top: -1px;
+    border-top-color: @aui-dropdown2-border-color;
+}
+
+/* Header integration. */
+.aui-dropdown2.aui-style-default.aui-dropdown2-in-header {
+    margin-top: 1px;
+}
+.aui-dropdown2.aui-style-default.aui-dropdown2-in-header.aui-dropdown2-in-buttons {
+    margin-top: 0;
+}
+.aui-dropdown2.aui-style-default.aui-dropdown2-in-header.aui-dropdown2-tailed {
+    margin-top: 4px;
+}
+
+/* Arrow for sub menus */
+.aui-dropdown2-sub-trigger {
+    position: relative;
+}
+
+.aui-dropdown2-sub-trigger:after {
+    border: 5px solid transparent;
+    border-left-color: @aui-dropdown2-trigger-color;
+    content: "";
+    height: 0;
+    margin-left: -16px;
+    margin-top: -5px;
+    left: 100%; /* "left" + "margin-left" required because of webkit not working properly with "right" */
+    position: absolute;
+    top: 50%;
+    width: 0;
+}
+
+.aui-dropdown2-sub-trigger.active:after,
+.aui-dropdown2-sub-trigger.aui-dropdown2-active:after {
+    border-left-color: @aui-dropdown2-trigger-active-color;
+}
+
+.aui-dropdown2-sub-trigger.disabled:after,
+.aui-dropdown2-sub-trigger.aui-dropdown2-disabled:after{
+    border-left-color: @aui-dropdown2-trigger-disabled-color;
+}
+
+.aui-dropdown2.aui-dropdown2-sub-menu,
+.aui-dropdown2.aui-dropdown2-in-header.aui-dropdown2-sub-menu {
+    margin-top: -3px;
+}
+
+.aui-dropdown2-trigger:not(.aui-dropdown2-trigger-arrowless) {
+  padding-right: 23px !important; /* 8px (arrow width) + 10px (right padding) + 5px (margin between arrow and logo) */
+  position: relative;
+}
+
+/* Dropdown2 button integration
+---------- */
+.aui-button.aui-dropdown2-trigger.active:first-child,
+.aui-button.aui-dropdown2-trigger.active {
+  /* square off bottom corners */
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+  border-bottom-width: 0; /* avoid double border when the dropdown is active - increase padding to cater for this reduction */
+  padding-bottom: 5px; /* increase the padding to cater for the lack of border so the button doesn't change size */
+}
+.aui-button-link.aui-dropdown2-trigger.active:first-child,
+.aui-button-link.aui-dropdown2-trigger.active {
+  border-bottom-width: 1px;
+  box-shadow: none;
+  padding-bottom: 5px;
+}
+
+.aui-buttons .aui-button.aui-button-subtle.aui-dropdown2-trigger.active,
+.aui-button.aui-button-subtle.aui-dropdown2-trigger.active {
+  border-color: @aui-button-subtle-border-color;
+}
+.aui-button.aui-button-subtle.aui-dropdown2-trigger:hover {
+  border-color: @aui-button-subtle-dropdown2-trigger-arrow-color;
+}
+
+/* Compact Dropdown2 Trigger */
+.aui-button.aui-button-compact.aui-dropdown2-trigger:not(.aui-dropdown2-trigger-arrowless) {
+  padding-right: 21px !important; /* 8px (arrow width) + 8px (right padding) + 5 (margin between arrow and logo) */
+}
+
+.aui-button.aui-button-compact.aui-dropdown2-trigger:after {
+  margin-left: -16px; /*  Override the margin-left from below for to compensate for the smaller padding-right */
+}
+
+.aui-button.aui-button-compact.aui-dropdown2-trigger:not(.aui-dropdown2-trigger-arrowless):after {
+  top: 11px; /* position the top of the arrow in the middle - 26px (height) / 2 (halfway) - 2 (arrow height) */
+}
+/* adjust padding for smaller height */
+.aui-button.aui-dropdown2-trigger.aui-button-compact.active:first-child:not(.aui-dropdown2-trigger-arrowless),
+.aui-button.aui-dropdown2-trigger.aui-button-compact.active:not(.aui-dropdown2-trigger-arrowless) {
+  padding-bottom: 3px; /* increase the padding to cater for the lack of border so the button doesn't change size */
+}
+
+/* End Compact Dropdown2 Trigger */
+
+.aui-button.aui-dropdown2-trigger:not(.aui-dropdown2-trigger-arrowless):after {
+  border: 4px solid transparent;
+  content: "";
+  height: 0;
+  left: 100%; /* "left" + "margin-left" required because of webkit not working properly with "right" */
+  margin-left: -18px; /* push the arrow back inside the button */
+  margin-top: -2px;
+  opacity: 0.8;
+  position: absolute;
+  top: 50%;
+  width: 0;
+}
+.aui-button.aui-dropdown2-trigger:not(.aui-dropdown2-trigger-arrowless):after,
+.aui-buttons .aui-button.aui-button-primary.aui-dropdown2-trigger:not(.aui-dropdown2-trigger-arrowless):after {
+  border-top-color: @aui-button-default-text-color;
+}
+.aui-button.aui-button-primary.aui-dropdown2-trigger:not(.aui-dropdown2-trigger-arrowless) {
+    &:after {
+        border-top-color: @aui-button-primary-text-color;
+    }
+    &.aui-button-primary:after {
+        border-top-color: @adg-color-white;
+    }
+}
+.aui-button.aui-dropdown2-trigger:hover:after,
+.aui-button.aui-dropdown2-trigger.active:after {
+  opacity: 1;
+}
+
+.aui-button.aui-dropdown2-trigger:not(.aui-dropdown2-trigger-arrowless):after {
+  margin-top: 0;  /* make sure no margins intefere with the positioning*/
+  top: 13px;  /* position the top of the arrow in the middle - 30px (height) / 2 (halfway) - 2 (arrow height)*/
+}
+
+/* suppress old icon pattern for dropdown widget so we don't get double arrows */
+.aui-button.aui-dropdown2-trigger > .icon-dropdown,
+.aui-button.aui-dropdown2-trigger > .aui-icon-dropdown {
+  display: none;
+}
+
+/* INPUT does not play with :after - dropdown2 does not support arrow styles for INPUT buttons */
+input.aui-button.aui-dropdown2-trigger {
+  padding-right: 10px !important; /* someone used important now we're all doomed */
+}
+input.aui-button.aui-dropdown2-trigger:after {
+  display: none;
+}
+
+/* Dropdown2-only / Split Button
+---------- */
+.aui-button.aui-dropdown2-trigger.aui-button-split-more,
+.aui-button.aui-dropdown2-trigger.aui-button-split-more.active {
+  /* don't touch vertical padding or things jump around, jump around, jump up jump up and get down */
+  padding-left: 5px;
+  padding-right: 10px;
+  text-align: left;
+  text-indent: -9999em;
+}
+
+.aui-button.aui-button-split-main:hover + .aui-button.aui-dropdown2-trigger.aui-button-split-more,
+.aui-button.aui-dropdown2-trigger.aui-button-split-more,
+.aui-button.aui-dropdown2-trigger.aui-button-split-more,
+.aui-button.aui-dropdown2-trigger.aui-button-split-more {
+    &.active:hover,
+    &.active,
+    &:hover {
+        &:before {
+            border-left-color: @aui-button-default-active-border-color; /* dark border for hover. */
+            bottom: -1px; /* -1 to pull it out over the border */
+            top: -1px; /* -1 to pull it out over the border */
+        }
+
+        &.aui-button-primary {
+            &:before {
+                border-left: 1px solid @aui-button-primary-dropdown2-split-color;
+            }
+        }
+    }
+}
+
+.aui-header .aui-button-primary.aui-button-split-main:hover + .aui-button.aui-dropdown2-trigger.aui-button-split-more:before,
+.aui-header .aui-button-primary.aui-dropdown2-trigger.aui-button-split-more.active:hover:before,
+.aui-header .aui-button-primary.aui-dropdown2-trigger.aui-button-split-more.active:before,
+.aui-header .aui-button-primary.aui-dropdown2-trigger.aui-button-split-more:hover:before,
+.aui-header .aui-button-primary.aui-dropdown2-trigger.aui-button-split-more:before {
+  border-color: @aui-button-primary-split-border-color;
+  bottom: 0;
+  top: 0;
+}
+
+/**
+ * Dropdown2 triggers in header
+ */
+.aui-header .aui-dropdown2-trigger.active,
+.aui-header a:focus,
+.aui-header a:hover,
+.aui-header a:active {
+  background-color: @aui-header-link-active-bg-color;
+}
+
+/* Icons in Dropdown2 triggers and links in header */
+.aui-header .aui-dropdown2-trigger.active .aui-icon,
+.aui-header a:focus .aui-icon,
+.aui-header a:hover .aui-icon,
+.aui-header a:active .aui-icon {
+  opacity: 1;
+}
+
+/* In case showIcon is not set to false for header dropdown triggers */
+.aui-header .aui-dropdown2-trigger .aui-icon-dropdown {
+  display: none;
+}
+/* Styling the dropdown2 triggers differently in the header to avoid inline-block spacing issues with other icons */
+.aui-header .aui-dropdown2-trigger:not(.aui-dropdown2-trigger-arrowless):after {
+  border: 4px solid transparent;
+  border-top-color: @aui-header-link-text-color;
+  content: "";
+  height: 0;
+  margin-left: -18px;
+  margin-top: -2px;
+  opacity: 0.8;
+  left: 100%; /* "left" + "margin-left" required because of webkit not working properly with "right" */
+  position: absolute;
+  text-indent: -99999px;
+  top: 50%;
+  width: 0;
+}
+.aui-header .aui-dropdown2-trigger:hover:after,
+.aui-header .aui-dropdown2-trigger.active:after {
+  opacity: 1;
+}
+.aui-header .aui-button.aui-dropdown2-trigger:after {
+  margin-top: 0;
+}

@@ -1,0 +1,69 @@
+{namespace aui.dropdown2}
+
+/**
+ * Main Dropdown2 template that creates the trigger and the dropdown all at once
+ * @param menu Object containing options used when building the menu
+ * @param? trigger Object containing options used when building the trigger
+ **/
+{template .dropdown2}
+    {call .trigger data="$trigger"}
+        {param menu: $menu /}
+    {/call}
+    {call .contents data="$menu" /}
+{/template}
+
+/**
+ * Dropdown2 Trigger
+ * If the tagName is an <a> element then tabindex="0" is added to the trigger to pull it into the tabbing order, unless
+ * a href/tabindex attribute is found in the extraAttributes map (we don't check for this if extraAttributes is a string).
+ * Adding tabindex="0" doesn't have any negative effects, unless you're explicitly pulling the trigger out of the tabbing order,
+ * in which case the extraAttributes parameter should be specified as a map, not as a string, with your custom tabindex.
+ * @param menu Object containing options to be used when building the menu
+ * @param? id
+ * @param? tagName element to use as the trigger. Supported values are "a" or "button". Default is "a".
+ * @param? extraClasses
+ * @param? extraAttributes
+ * @param? content 
+ * @param? text Visible text of trigger.
+ * @param? container Sets data-container attribute.
+ * @param? title Title attribute.
+ * @param? showIcon default is true
+ * @param? iconText Icon text
+ * @param? iconClasses optional classes to use for the icon. Default is "aui-icon-dropdown".
+ **/
+{template .trigger}
+    {call aui.trigger.trigger data="all"}
+        {param extraClasses}{call aui.renderExtraClasses data="all"/} aui-dropdown2-trigger{/param}
+        {param extraAttributes}{call aui.renderExtraAttributes data="all"/} data-aui-trigger {/param}
+    {/call}
+{/template}
+
+/**
+ * Dropdown2 Menu
+ * @param id
+ * @param? content Content for the menu. Usually an unordered list or a series of menu sections.
+ * @param? extraClasses
+ * @param? extraAttributes
+ **/
+{template .contents}
+<div id="{$id}" class="aui-dropdown2{call aui.renderExtraClasses data="all" /}"{call aui.renderExtraAttributes data="all" /}>
+    {if $content}
+        {$content|noAutoescape}
+    {/if}
+</div>
+{/template}
+
+/**
+ * Dropdown2 Menu Section
+ * @param? id
+ * @param content Content for the section. Usually an unordered list.
+ * @param? extraClasses
+ * @param? extraAttributes
+ * @param? label Label for the section
+ **/
+{template .section}
+<div{if $id} id="{$id}"{/if} class="aui-dropdown2-section{call aui.renderExtraClasses data="all" /}"{call aui.renderExtraAttributes data="all" /}>
+    {if $label}<strong>{$label}</strong>{/if}
+    {$content|noAutoescape}
+</div>
+{/template}

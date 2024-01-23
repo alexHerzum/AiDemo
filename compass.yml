@@ -1,0 +1,20 @@
+name: apolloui
+id: 'ari:cloud:compass:c8581dde-9153-4381-be2e-813135f3b3ba:component/cd838154-1c6d-49b7-9f92-5395a54f726e/db11b1d2-da8a-4bc2-84c9-ab351846b1f2'
+description: null
+ownerId: null
+fields:
+  tier: 2
+links:
+  - name: ''
+    type: REPOSITORY
+    url: 'https://bitbucket.org/herzumdemoteam/apolloui'
+  - name: ''
+    type: PROJECT
+    url: 'https://herzum-webifour.atlassian.net/browse/BROW'
+relationships:
+  DEPENDS_ON:
+    - 'ari:cloud:compass:c8581dde-9153-4381-be2e-813135f3b3ba:component/cd838154-1c6d-49b7-9f92-5395a54f726e/42a7af17-242e-4d8e-9ca2-5f5602708919'
+    - 'ari:cloud:compass:c8581dde-9153-4381-be2e-813135f3b3ba:component/cd838154-1c6d-49b7-9f92-5395a54f726e/564cd5f0-9461-4a00-9656-d8c6d3ce4454'
+
+# Learn more about formatting compass.yml:
+# https://go.atlassian.com/compass-yml-format

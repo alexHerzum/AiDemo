@@ -1,0 +1,304 @@
+@import 'imports/global';
+
+.aui-toolbar {
+    clear: both;
+    display: inline-block; /* new rendering context */
+    padding-top: 10px;
+    position: relative;
+    width: 100%; /* emulate normal block */
+}
+
+.aui-toolbar .toolbar-group {
+    display: inline-block;
+    float: left;
+    padding: 0;
+    margin: 0 10px 10px 0;
+    white-space: nowrap;
+}
+
+.aui-toolbar .toolbar-item {
+    display: inline-block;
+    float: left;
+    margin: 0;
+    padding: 0;
+}
+
+.aui-toolbar .aui-dd-parent {
+    position: relative;
+    width: auto;
+}
+
+/* splits set toolbars into multiple sections, eg. left/right split */
+.aui-toolbar .toolbar-split {
+    display: inline-block;
+    float: left;
+    margin-left: 10px;
+}
+
+.aui-toolbar .toolbar-split.toolbar-split-right {
+    float: right;
+}
+
+.aui-toolbar .toolbar-split.toolbar-split-row {
+    clear: both;
+    float: none;
+    width: 100%;
+}
+
+/* Cursor/affordance: looks like a button = pointer, looks like a link = hand */
+.aui-toolbar .toolbar-trigger {
+    cursor: default;
+}
+.aui-toolbar .toolbar-item-link .toolbar-trigger {
+    cursor: pointer;
+}
+
+/* primary buttons */
+.aui-toolbar .primary .toolbar-trigger {
+    font-weight: bold;
+}
+
+/* available/inactive controls */
+.aui-toolbar .toolbar-group .toolbar-trigger,
+.aui-toolbar .aui-dd-parent a.aui-dd-trigger {
+    #aui.box-sizing();
+    background: @aui-button-default-bg-color;
+    border: @aui-button-border-width @aui-button-border-style @aui-button-default-border-color;
+    color: @aui-button-default-text-color;
+    display: inline-block;
+    margin: 0;
+    padding: 4px 10px;
+    text-decoration: none;
+    text-shadow: 0 1px 0 white;
+    vertical-align: baseline;
+    /* and now the styles to overcome aui-dropdown1 */
+    height: auto;
+    text-indent: 0;
+    width: auto;
+    /* to make split buttons work */
+    float: left;
+}
+
+.toolbar-item + .toolbar-item .toolbar-trigger,
+.toolbar-item + .toolbar-item a.aui-dd-trigger {
+    border-left-width: 0;
+    padding-left: 11px;
+}
+
+.aui-toolbar .toolbar-group button.toolbar-trigger,
+.aui-toolbar .toolbar-group input.toolbar-trigger {
+    font-size: inherit;
+    font-family: inherit;
+    line-height: inherit;
+}
+
+.aui-toolbar .toolbar-group .toolbar-item.toolbar-item-link .toolbar-trigger {
+    border-color: transparent;
+    background: transparent;
+    text-decoration: none;
+    color: @aui-toolbar-item-link-text-color;
+}
+
+.aui-toolbar .toolbar-group .toolbar-item-link:hover .toolbar-trigger,
+.aui-toolbar .toolbar-group .toolbar-item-link .toolbar-trigger:focus {
+    text-decoration: underline;
+}
+
+.toolbar-group .toolbar-item:first-of-type a,
+.toolbar-group .toolbar-item:first-of-type button,
+.toolbar-group .toolbar-item:first-of-type input[type="button"],
+.toolbar-group .toolbar-item:first-of-type input[type="reset"],
+.toolbar-group .toolbar-item:first-of-type input[type="submit"],
+.toolbar-group .toolbar-item:first-of-type .toolbar-trigger {
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;
+}
+
+.toolbar-group .toolbar-item.toolbar-splitbutton .aui-dd-trigger {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+.toolbar-group .toolbar-item.toolbar-splitbutton:last-of-type .aui-dd-trigger,
+.toolbar-group .toolbar-item:last-of-type a,
+.toolbar-group .toolbar-item:last-of-type button,
+.toolbar-group .toolbar-item:last-of-type input[type="button"],
+.toolbar-group .toolbar-item:last-of-type input[type="reset"],
+.toolbar-group .toolbar-item:last-of-type input[type="submit"],
+.toolbar-group .toolbar-item:last-of-type .toolbar-trigger {
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+}
+
+.toolbar-group .toolbar-splitbutton:last-of-type .toolbar-trigger {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.toolbar-group .toolbar-item:first-of-type .toolbar-trigger,
+.toolbar-group .toolbar-item:first-of-type button {
+    border-left-width: 1px;
+}
+
+.aui-toolbar .toolbar-group .aui-dropdown {
+    border: 1px solid @aui-toolbar-dropdown-border-color;
+}
+
+.aui-toolbar .toolbar-group .aui-dropdown a {
+    border: 0;
+    border-radius: 0;
+}
+
+/* hover/focus controls */
+.aui-toolbar .aui-dropdown2-trigger.toolbar-trigger.active,
+.aui-toolbar .toolbar-splitbutton:hover .toolbar-trigger,
+.aui-toolbar .toolbar-group .toolbar-trigger:focus,
+.aui-toolbar .toolbar-group .toolbar-trigger:hover,
+.aui-toolbar .toolbar-group button:focus,
+.aui-toolbar .toolbar-group button:hover,
+.aui-toolbar .aui-dd-parent .aui-dd-trigger:focus,
+.aui-toolbar .aui-dd-parent .aui-dd-trigger:hover,
+.aui-toolbar .toolbar-group .active .toolbar-trigger:hover {
+    background: @aui-button-default-hover-bg-color;
+    border-width: 1px;
+    border-color: @aui-button-default-active-border-color;
+    margin-left: -1px;
+    color: @aui-button-default-active-text-color;
+    position: relative;
+    text-decoration:none;
+}
+.aui-toolbar .toolbar-item:first-child .toolbar-trigger:hover,
+.aui-toolbar .toolbar-item:first-child .aui-dropdown2-trigger.toolbar-trigger.active,
+.aui-toolbar .toolbar-item.active:first-child .toolbar-trigger,
+.aui-toolbar .toolbar-splitbutton:first-child:hover .toolbar-trigger,
+.aui-toolbar .toolbar-item:first-child .toolbar-trigger:focus,
+.aui-toolbar .toolbar-item:first-child .toolbar-trigger:hover,
+.aui-toolbar .toolbar-item:first-child button:focus,
+.aui-toolbar .toolbar-item:first-child button:hover,
+.aui-toolbar .toolbar-item:first-child .aui-dd-parent .aui-dd-trigger:focus,
+.aui-toolbar .toolbar-item:first-child .aui-dd-parent .aui-dd-trigger:hover,
+.aui-toolbar .toolbar-item:first-child.active .toolbar-trigger:hover {
+    margin-left: 0;
+}
+
+.aui-toolbar .aui-dropdown2-trigger.active,
+.aui-toolbar .aui-dd-parent a.aui-dd-trigger.active,
+.aui-toolbar .toolbar-group .active .toolbar-trigger,
+.aui-toolbar .toolbar-group .toolbar-trigger:active {
+    background: @aui-button-default-bg-color;
+    box-shadow: inset 0px 3px 6px rgba(0,0,0,.1);
+    text-shadow: none;
+    text-decoration:none;
+}
+
+.aui-toolbar .toolbar-group .toolbar-item-link .toolbar-trigger:active {
+    background: none;
+    box-shadow: none;
+}
+
+/* Note .dropdown-text and .dropdown-icon used by both Dropdown and Dropdown2 */
+.aui-toolbar .icon-dropdown {
+    background: transparent url("aui-toolbar-24px.png") 0 0 no-repeat; // contains a sprite with other icons we don't use. Deprecated in favour of using pseudo element arrows
+    display: inline-block;
+    margin-top: 0;
+    margin-left: 5px;
+    margin-right: -5px;
+    padding-right: 5px;
+    text-indent: -9999px;
+    width: 7px;
+}
+
+.aui-toolbar .toolbar-dropdown .icon-dropdown {
+    background-position: -24px 0;
+    height: 7px;
+}
+
+.aui-toolbar .toolbar-splitbutton .icon-dropdown {
+    background-position: -46px 7px;
+    margin-left: 0;
+    height: auto;
+}
+
+.aui-toolbar .toolbar-splitbutton > .toolbar-trigger,
+.aui-toolbar .toolbar-splitbutton > .toolbar-trigger:hover,
+.aui-toolbar .toolbar-splitbutton > .toolbar-trigger:focus {
+    border-right-style: dotted;
+    float: left;
+}
+.aui-toolbar .toolbar-splitbutton > .aui-dd-parent > .toolbar-trigger:hover,
+.aui-toolbar .toolbar-splitbutton > .aui-dd-parent > .toolbar-trigger:focus {
+    border-left-width: 0;
+    margin-left: 0;
+}
+.aui-toolbar .toolbar-splitbutton > .aui-dd-parent {
+    float: left;
+}
+.aui-toolbar .toolbar-splitbutton > .aui-dd-parent > .toolbar-trigger {
+    border-left-width: 0;
+}
+.aui-toolbar .toolbar-splitbutton > .aui-dd-parent.active > .toolbar-trigger {
+    border-left-color: @aui-button-default-active-border-color;
+}
+.aui-toolbar .toolbar-splitbutton > .aui-dd-parent > .aui-dd-trigger {
+    min-width: 0;
+    margin: 0;
+    padding-left: 2px;
+    padding-right: 2px;
+    width: 9px;
+}
+
+/* disabled controls */
+.aui-toolbar .aui-dropdown2-trigger[aria-disabled="true"],
+.aui-toolbar .toolbar-group.disabled .toolbar-trigger,
+.aui-toolbar .toolbar-item.disabled .toolbar-trigger,
+.aui-toolbar .toolbar-trigger.disabled {
+    color: @aui-button-default-disabled-text-color;
+}
+
+/* Prevent border highlighting and use normal cursor when disabled.
+   .active classes are to counter a clash with dropdown states. */
+.aui-toolbar .aui-dropdown2-trigger[aria-disabled="true"]:focus,
+.aui-toolbar .aui-dropdown2-trigger[aria-disabled="true"]:hover,
+.aui-toolbar .aui-dropdown2-trigger[aria-disabled="true"]:active,
+.aui-toolbar .disabled .active .toolbar-trigger:hover,
+.aui-toolbar .toolbar-group.disabled .toolbar-trigger,
+.aui-toolbar .toolbar-group.disabled .toolbar-trigger:focus,
+.aui-toolbar .toolbar-group.disabled .toolbar-trigger:hover,
+.aui-toolbar .toolbar-group.disabled .toolbar-trigger:active,
+.aui-toolbar .toolbar-group .disabled .toolbar-trigger,
+.aui-toolbar .toolbar-group .disabled .toolbar-trigger:focus,
+.aui-toolbar .toolbar-group .disabled .toolbar-trigger:hover,
+.aui-toolbar .toolbar-group .disabled .toolbar-trigger:active,
+.aui-toolbar .toolbar-group .toolbar-trigger.disabled,
+.aui-toolbar .toolbar-group .toolbar-trigger.disabled:focus,
+.aui-toolbar .toolbar-group .toolbar-trigger.disabled:hover,
+.aui-toolbar .toolbar-group .toolbar-trigger.disabled:active {
+    background: @aui-button-default-disabled-bg-color;
+    border-color: @aui-button-default-disabled-border-color;
+    box-shadow: none;
+    color: @aui-button-default-disabled-text-color;
+    cursor: default;
+    text-shadow: none;
+}
+
+.aui-toolbar .aui-dropdown2-trigger[aria-disabled="true"]:focus,
+.aui-toolbar .aui-dropdown2-trigger[aria-disabled="true"]:hover,
+.aui-toolbar .aui-dropdown2-trigger[aria-disabled="true"]:active {
+    border-color: @aui-button-primary-disabled-border-color;
+    color: @aui-button-default-disabled-text-color;
+}
+
+
+.aui-toolbar .toolbar-group.disabled .toolbar-item:first-child .toolbar-trigger,
+.aui-toolbar .toolbar-group .disabled.toolbar-item:first-child .toolbar-trigger,
+.aui-toolbar .toolbar-group .toolbar-item:first-child .disabled.toolbar-trigger {
+    border-left-width: 1px;
+    border-left-color: @aui-button-default-disabled-border-color;
+}
+
+/* prevent disabled split buttons jumping if dropdown clicked */
+.aui-toolbar .toolbar-group.disabled .toolbar-item .aui-dd-trigger,
+.aui-toolbar .toolbar-group .disabled.toolbar-item .aui-dd-trigger,
+.aui-toolbar .toolbar-group .toolbar-item .disabled.aui-dd-trigger {
+    border-left-width: 0;
+}

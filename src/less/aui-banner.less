@@ -1,0 +1,19 @@
+@import 'imports/global';
+
+.aui-banner {
+    border: none;
+    border-radius: 0;
+    background: none;
+    color: @aui-message-text-color;
+    margin: 0;
+    padding: 10px 40px;
+    position: relative;
+
+    .aui-banner-title {
+        font-weight: bold;
+
+        &:empty {
+            display: none;
+        }
+    }
+}
