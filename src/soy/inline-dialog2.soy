@@ -1,0 +1,62 @@
+{namespace aui.inlineDialog2}
+
+/**
+ * @param content HTML-escaped content for the dialog's main area
+ * @param? id An ID for the inline dialog. Though not required, it is encouraged for better ARIA support
+ * @param? alignment '[left|top|right|bottom|middle|center] [left|top|right|bottom|middle|center]'. Default is no alignment
+ * @param? respondsTo [hover|toggle] Specifies the type of messages the inline dialog will respond to. Default is no response
+ * @param? extraClasses
+ * @param? extraAttributes
+ */
+{template .inlineDialog2}
+    <div {if $id} id="{$id}"{/if} {sp}
+        class="aui-layer aui-inline-dialog aui-inline-dialog2
+            {call aui.renderExtraClasses data="all" /}
+        "
+        data-aui-alignment="{$alignment ? $alignment : ''}"
+        data-aui-responds-to="{$respondsTo ? $respondsTo : ''}"
+        aria-hidden="true"
+        {call aui.renderExtraAttributes data="all" /}>
+
+        {call .inlineDialog2Content}
+            {param content: $content /}
+        {/call}
+    </div>
+{/template}
+
+/**
+ * @param content
+ */
+{template .inlineDialog2Content private="true"}
+    <div class="aui-inline-dialog-contents">
+        {if $content}
+            {$content|noAutoescape}
+        {/if}
+    </div>
+{/template}
+
+/**
+ * Inline Dialog2 Trigger
+ * If the tagName is an <a> element then tabindex="0" is added to the trigger to pull it into the tabbing order, unless
+ * a href/tabindex attribute is found in the extraAttributes map (we don't check for this if extraAttributes is a string).
+ * Adding tabindex="0" doesn't have any negative effects, unless you're explicitly pulling the trigger out of the tabbing order,
+ * in which case the extraAttributes parameter should be specified as a map, not as a string, with your custom tabindex.
+ * @param menu Object containing options to be used when building the menu
+ * @param? id
+ * @param? tagName element to use as the trigger. Supported values are "a" or "button". Default is "a".
+ * @param? extraClasses
+ * @param? extraAttributes
+ * @param? content
+ * @param? text Visible text of trigger.
+ * @param? container Sets data-container attribute.
+ * @param? title Title attribute.
+ * @param? showIcon default is false
+ * @param? iconText Icon text
+ * @param? iconClasses optional classes to use for the icon. Default is "aui-icon-dropdown".
+ **/
+{template .trigger}
+    {call aui.trigger.trigger data="all"}
+        {param showIcon : $showIcon ? $showIcon : false /}
+        {param extraAttributes}{call aui.renderExtraAttributes data="all"/} data-aui-trigger {/param}
+    {/call}
+{/template}
